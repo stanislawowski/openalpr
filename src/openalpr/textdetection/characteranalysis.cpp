@@ -222,14 +222,14 @@ namespace alpr
       {
         Mat tmp(pipeline_data->thresholds[z].size(), pipeline_data->thresholds[z].type());
         pipeline_data->thresholds[z].copyTo(tmp);
-        cvtColor(tmp, tmp, CV_GRAY2BGR);
+        cvtColor(tmp, tmp, COLOR_GRAY2BGR);
 
         tempDash.push_back(tmp);
       }
 
       Mat bestVal(this->bestThreshold.size(), this->bestThreshold.type());
       this->bestThreshold.copyTo(bestVal);
-      cvtColor(bestVal, bestVal, CV_GRAY2BGR);
+      cvtColor(bestVal, bestVal, COLOR_GRAY2BGR);
 
       for (unsigned int z = 0; z < this->bestContours.size(); z++)
       {
@@ -258,7 +258,7 @@ namespace alpr
       drawContours(charMask, bestContours.contours,
                    i, // draw this contour
                    cv::Scalar(255,255,255), // in
-                   CV_FILLED,
+                   FILLED,
                    8,
                    bestContours.hierarchy,
                    1
@@ -549,7 +549,7 @@ namespace alpr
 
       totalChars++;
 
-      drawContours(tempFullContour, textContours.contours, i, Scalar(255,255,255), CV_FILLED, 8, textContours.hierarchy);
+      drawContours(tempFullContour, textContours.contours, i, Scalar(255,255,255), FILLED, 8, textContours.hierarchy);
       bitwise_and(tempFullContour, plateMask, tempMaskedContour);
 
       float beforeMaskWhiteness = mean(tempFullContour)[0];

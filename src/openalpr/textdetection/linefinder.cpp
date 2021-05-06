@@ -42,7 +42,7 @@ namespace alpr
 
     vector<vector<Point> > linesFound;
 
-    cvtColor(image, image, CV_GRAY2BGR);
+    cvtColor(image, image, COLOR_GRAY2BGR);
 
     vector<CharPointInfo> charPoints;
 
@@ -213,7 +213,7 @@ namespace alpr
       // Draw the winning line segment
 
       Mat tempImg = Mat::zeros(Size(contours.width, contours.height), CV_8U);
-      cvtColor(tempImg, tempImg, CV_GRAY2BGR);
+      cvtColor(tempImg, tempImg, COLOR_GRAY2BGR);
 
       cv::line(tempImg, topLines[bestScoreIndex].p1, topLines[bestScoreIndex].p2, Scalar(0, 0, 255), 2);
       cv::line(tempImg, bottomLines[bestScoreIndex].p1, bottomLines[bestScoreIndex].p2, Scalar(0, 0, 255), 2);

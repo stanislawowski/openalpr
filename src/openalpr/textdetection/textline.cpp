@@ -90,7 +90,7 @@ namespace alpr
 
     baseImage.copyTo(debugImage);
 
-    cv::cvtColor(debugImage, debugImage, CV_GRAY2BGR);
+    cv::cvtColor(debugImage, debugImage, COLOR_GRAY2BGR);
 
 
     fillConvexPoly(debugImage, linePolygon.data(), linePolygon.size(), Scalar(0,0,165));

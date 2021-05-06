@@ -38,8 +38,13 @@ namespace alpr
 
     //this->descriptorMatcher = DescriptorMatcher::create( "FlannBased" );
 
-    this->detector = new FastFeatureDetector(10, true);
-    this->extractor = new BRISK(10, 1, 0.9);
+    #if OPENCV_MAJOR_VERSION == 2
+      this->detector = new FastFeatureDetector(10, true);
+      this->extractor = new BRISK(10, 1, 0.9);
+    #else
+      this->detector = FastFeatureDetector::create();
+      this->extractor = BRISK::create(10, 1, 0.9);
+    #endif
   }
 
   FeatureMatcher::~FeatureMatcher()
@@ -252,7 +257,7 @@ namespace alpr
         Mat img = imread( fullpath );
 
         // convert to gray and resize to the size of the templates
-        cvtColor(img, img, CV_BGR2GRAY);
+        cvtColor(img, img, COLOR_BGR2GRAY);
         resize(img, img, getSizeMaintainingAspect(img, config->stateIdImageWidthPx, config->stateIdimageHeightPx));
 
         if( img.empty() )

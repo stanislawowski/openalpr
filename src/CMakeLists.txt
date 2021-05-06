@@ -47,6 +47,7 @@ IF (${OpenCV_VERSION} VERSION_LESS 2.4.7)
 	MESSAGE(FATAL_ERROR "OpenCV version is not compatible : ${OpenCV_VERSION}")
 ENDIF()
 
+include_directories(${OpenCV_INCLUDE_DIRS})
 include_directories(./openalpr )
 
 IF (WIN32)
@@ -73,11 +74,11 @@ ADD_EXECUTABLE( alpr  main.cpp )
 TARGET_LINK_LIBRARIES(alpr
 	openalpr
 	support
-    video
+  video
 	${OpenCV_LIBS}
 	${Tesseract_LIBRARIES}
-    ${Extra_LIBS}
-  )
+  ${Extra_LIBS}
+)
 
 # Compile the alprd library on Unix-based OS
 IF (WITH_DAEMON)
