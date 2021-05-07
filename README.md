@@ -1,15 +1,17 @@
-# openalpr
+# neoALPR
 
-**Warning: this repository has been reverted back to March 2015, one month before OpenALPR went commercial and the code quality began to deteriorate.**
+**Free-as-in-freedom and non-commercial [OpenALPR](https://www.openalpr.com/) fork.**
 
-OpenALPR is an open source *Automatic License Plate Recognition* library written in C++ with bindings in C#, Java, and Python.  The library analyzes images and identifies license plates.  The output is the text representation of any license plate characters found in the image.
+neoALPR is an *Automatic License Plate Recognition* library written in C++ with bindings in C#, Java, and Python. The library analyzes images and identifies license plates. The output is the text representation of any license plate characters found in the image.
+
+This code is forked from OpenALPR repository reverted back to March 2015 - one month before it went commercial and code quality began to deteriorate.
 
 ## User Guide
 
-OpenALPR includes a command line utility.  Simply typing "alpr [image file path]" is enough to get started recognizing license plate images.
+neoALPR includes a command line utility. Simply typing "alpr [image file path]" is enough to get started recognizing license plate images.
 
 ```sh
-user@linux:~/openalpr$ alpr ./samplecar.png
+$ alpr ./samplecar.png
 
 plate0: top 10 results -- Processing Time = 58.1879ms.
     - PE3R2X     confidence: 88.9371
@@ -31,23 +33,14 @@ plate0: top 10 results -- Processing Time = 58.1879ms.
 sudo apt-get install libopencv-dev libtesseract-dev git cmake build-essential libleptonica-dev liblog4cplus-dev libcurl3-dev
 # If using the daemon, install beanstalkd
 sudo apt-get install beanstalkd
-git clone git@github.com:stanislawowski/openalpr.git
-mkdir -p openalpr/src/build
-cd openalpr/src/build
+git clone git@github.com:stanislawowski/neoALPR.git
+mkdir -p neoALPR/src/build
+cd neoALPR/src/build
 cmake -DCMAKE_INSTALL_PREFIX:PATH=/usr -DCMAKE_INSTALL_SYSCONFDIR:PATH=/etc ..
 make
 sudo make install
 ```
 
-## Docker
-
-```sh
-docker build -t openalpr https://github.com/openalpr/openalpr.git
-wget http://plates.openalpr.com/h786poj.jpg
-docker run -it --rm -v $(pwd):/data:ro openalpr -c eu h786poj.jpg
-```
-
 ## License
 
-Affero GPLv3
-http://www.gnu.org/licenses/agpl-3.0.html
+neoALPR is licensed under [Affero GPL v3](http://www.gnu.org/licenses/agpl-3.0.html).
