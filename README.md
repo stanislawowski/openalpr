@@ -5,18 +5,11 @@ openalpr
 
 OpenALPR is an open source *Automatic License Plate Recognition* library written in C++ with bindings in C#, Java, and Python.  The library analyzes images and identifies license plates.  The output is the text representation of any license plate characters found in the image.
 
-Check out a live online demo here: http://www.openalpr.com/demo.html
-
 User Guide
 -----------
 
 
 OpenALPR includes a command line utility.  Simply typing "alpr [image file path]" is enough to get started recognizing license plate images.
-
-For example, the following output is created by analyzing this image:
-![Plate Image](http://www.openalpr.com/images/demoscreenshots/plate3.png "Input image")
-
-
 
 ```
 user@linux:~/openalpr$ alpr ./samplecar.png
@@ -35,82 +28,8 @@ plate0: top 10 results -- Processing Time = 58.1879ms.
 
 ```
 
-Detailed command line usage:
-
-```
-user@linux:~/openalpr$ alpr --help
-
-USAGE: 
-
-   alpr  [-c <country_code>] [--config <config_file>] [-n <topN>] [--seek
-         <integer_ms>] [-p <pattern code>] [--clock] [-d] [-j] [--]
-         [--version] [-h] <image_file_path>
-
-
-Where: 
-
-   -c <country_code>,  --country <country_code>
-     Country code to identify (either us for USA or eu for Europe). 
-     Default=us
-
-   --config <config_file>
-     Path to the openalpr.conf file
-
-   -n <topN>,  --topn <topN>
-     Max number of possible plate numbers to return.  Default=10
-
-   --seek <integer_ms>
-     Seek to the specied millisecond in a video file. Default=0
-
-   -p <pattern code>,  --pattern <pattern code>
-     Attempt to match the plate number against a plate pattern (e.g., md
-     for Maryland, ca for California)
-
-   --clock
-     Measure/print the total time to process image and all plates. 
-     Default=off
-
-   -d,  --detect_region
-     Attempt to detect the region of the plate image.  [Experimental] 
-     Default=off
-
-   -j,  --json
-     Output recognition results in JSON format.  Default=off
-
-   --,  --ignore_rest
-     Ignores the rest of the labeled arguments following this flag.
-
-   --version
-     Displays version information and exits.
-
-   -h,  --help
-     Displays usage information and exits.
-
-   <image_file_path>
-     Image containing license plates
-
-
-   OpenAlpr Command Line Utility
-
-```
-
-
-Binaries
-----------
-
-Pre-compiled [64-bit Windows binaries] (https://github.com/openalpr/openalpr/releases/download/v2.0.1/openalpr-2.0.1-win-64bit.zip) can be downloaded on the [releases page] (https://github.com/openalpr/openalpr/releases)
-
-Install OpenALPR on Ubuntu 14.04 x64 with the following commands:
-
-    wget -O - http://deb.openalpr.com/openalpr.gpg.key | sudo apt-key add -
-    echo "deb http://deb.openalpr.com/master/ openalpr main" | sudo tee /etc/apt/sources.list.d/openalpr.list
-    sudo apt-get update
-    sudo apt-get install openalpr openalpr-daemon openalpr-utils libopenalpr-dev
-
 Compiling
 -----------
-
-[![Build Status](https://travis-ci.org/openalpr/openalpr.svg?branch=master)](https://travis-ci.org/openalpr/openalpr)
 
 OpenALPR compiles and runs on Linux, Mac OSX and Windows.
 
@@ -130,35 +49,15 @@ Please follow these detailed compilation guides for your respective operating sy
 
 If all went well, there should be an executable named *alpr* along with *libopenalpr-static.a* and *libopenalpr.so* that can be linked into your project.
 
+
 Docker
 ------
 
 ``` shell
-# Build docker image
 docker build -t openalpr https://github.com/openalpr/openalpr.git
-# Download test image
 wget http://plates.openalpr.com/h786poj.jpg
-# Run alpr on image
 docker run -it --rm -v $(pwd):/data:ro openalpr -c eu h786poj.jpg
 ```
-
-Questions
----------
-Please post questions or comments to the Google group list: https://groups.google.com/forum/#!forum/openalpr
-
-
-Contributions
--------------
-Improvements to the OpenALPR library are always welcome.  Please review the [OpenALPR design description](https://github.com/openalpr/openalpr/wiki/OpenALPR-Design) and get started.
-
-Code contributions are not the only way to help out.  Do you have a large library of license plate images?  If so, please upload your data to the anonymous FTP located at upload.openalpr.com.  Do you have time to "tag" plate images in an input image or help in other ways?  Please let everyone know by posting a note in the forum.
-
-Donations
----------
-OpenALPR provides bounties for open issues.  Other developers can fix/enhance the library and claim those bounties.  The best way to donate to the project is to add a bounty to one or more of the open issues on BountyShare
-
-[![Bountysource](https://www.bountysource.com/badge/team?team_id=830&style=bounties_received)](https://www.bountysource.com/teams/openalpr/issues?utm_source=OpenALPR&utm_medium=shield&utm_campaign=bounties_received)
-
 
 License
 -------
